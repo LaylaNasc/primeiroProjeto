@@ -7,7 +7,6 @@
 
             @include('top_bar')
 
-                <!-- label and cancel -->
                 <div class="row">
                     <div class="col">
                         <p class="display-6 mb-0">NOVA NOTA</p>
@@ -19,7 +18,6 @@
                     </div>
                 </div>
 
-                <!-- form -->
                 <form action="{{ route('newNoteSubmit') }}" method="post">
                     @csrf
                     <div class="row mt-3">

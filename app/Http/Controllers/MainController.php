@@ -15,7 +15,6 @@ class MainController extends Controller
         $id = session('user.id');
         $notas = User::find($id)->notas()->whereNull('deleted_at')->get()->toArray();
 
-        //primeiro vou dar uma show views
         return view('home', ['notas' => $notas]);
     }
 
@@ -64,10 +63,15 @@ class MainController extends Controller
     public function editNote($id)
     {
        $id = Operacoes::decryptId($id);
-       //busca a nota
+
+       if($id === null){
+            return redirect()->route('home'); 
+       }
+
+       //buscando a nota
         $nota = Note::find($id);
 
-       //mostra a view
+       //mostrando a view
 
        return view('editNote', ['nota' => $nota]);
     }
@@ -97,9 +101,13 @@ class MainController extends Controller
             return redirect()->route('home');
         }
 
-        //decryptação
+        //decriptação
 
         $id = Operacoes::decryptId($request->notaId);
+
+        if($id === null){
+            return redirect()->route('home'); 
+       }
 
         //carregar os dados da nota = notaId
 
@@ -118,9 +126,14 @@ class MainController extends Controller
     public function deleteNote($id)
     {
         $id = Operacoes::decryptId($id);
+
+        if($id === null){
+            return redirect()->route('home'); 
+        }
+       
         $nota = Note::find($id);
 
-        //confirmaçãon de deleção
+        //confirmação de deleção
 
         return view('deleteNote', ['nota' =>$nota]);
 
@@ -128,22 +141,22 @@ class MainController extends Controller
 
     public function deleteNoteConfirm($id)
     {
-        //desencryptar
+        //desencriptar
         $id = Operacoes::decryptId($id);
+
+        if($id === null){
+            return redirect()->route('home'); 
+        }
 
         // carregar nota
 
         $nota = Note::find($id);
 
-        //deleção mais onde não guardo os dados no bd
+        //3. usando a função soft delete
 
-        //$nota->delete();
+        $nota->delete();
 
-        //deleção onde os dados mesmo excluidos pelo usuário ficam guardados no banco a exclusão lógica
-        $nota->deleted_at = date('Y:m:d H:i:s');
-        $nota->save();
         //redirecionar
-
         return redirect()->route('home');
 
     }

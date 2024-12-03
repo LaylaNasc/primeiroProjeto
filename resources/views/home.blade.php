@@ -6,7 +6,6 @@
 
                 @include('top_bar')
 
-                <!-- no notes available -->
                 @if (count($notas) == 0)
                     
                 <div class="row mt-5">
@@ -20,7 +19,6 @@
 
                 @else
 
-                <!-- notes are available -->
                 <div class="d-flex justify-content-end mb-3">
                     <a href="{{ route('new') }}" class="btn btn-secondary px-3">
                         <i class="fa-regular fa-pen-to-square me-2"></i>Nova Nota

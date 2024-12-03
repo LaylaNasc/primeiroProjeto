@@ -11,9 +11,9 @@ class Operacoes
     public static function decryptId($value)
     {
         try {
-            $value = Crypt::decrypt($value); //desencryptação do id
+            $value = Crypt::decrypt($value); //desencriptação do id
         } catch (DecryptException $e) {
-            return redirect()->route('home'); 
+            return null; 
         }
 
         return $value;

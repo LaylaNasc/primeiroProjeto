@@ -5,12 +5,10 @@
             <div class="col-md-6 col-sm-8">
                 <div class="card p-5">
                     
-                    <!-- logo -->
                     <div class="text-center p-3">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="Notes logo">
                     </div>
 
-                    <!-- form -->
                     <div class="row justify-content-center">
                         <div class="col-md-10 col-12">
                             <form action="/loginSubmit" method="post" novalidate>
@@ -46,7 +44,6 @@
                         </div>
                     </div>
 
-                    <!-- copy -->
                     <div class="text-center text-secondary mt-3">
                         <small>&copy; <?= date('Y') ?> Notes</small>
                     </div>                
